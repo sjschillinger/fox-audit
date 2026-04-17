@@ -290,19 +290,23 @@ export default function Home() {
             Limited spots — only a few openings left this month
           </div>
 
-          {/* Brand wordmark */}
           <h1
-            className="font-bold uppercase mb-6"
-            style={{
-              fontSize: "clamp(2.5rem, 10vw, 5.5rem)",
-              letterSpacing: "0.12em",
-              color: GREEN,
-              animation: "fadeUp 0.7s ease 0.1s forwards",
-              opacity: 0,
-              lineHeight: 1.05,
-            }}
+            className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight leading-[1.1] mb-6"
+            style={{ animation: "fadeUp 0.7s ease 0.1s forwards", opacity: 0 }}
           >
-            The Fox Audit
+            Your finances,
+            <br />
+            <span
+              style={{
+                background: `linear-gradient(135deg, var(--foreground) 0%, ${GREEN} 60%, var(--foreground) 100%)`,
+                backgroundSize: "200% auto",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
+              finally understood.
+            </span>
           </h1>
 
           <p
