@@ -441,7 +441,7 @@ export default function Home() {
                   className="p-5 rounded-2xl h-full"
                   style={{ background: "var(--surface)", border: "1px solid var(--border)" }}
                 >
-                  <div className="text-3xl font-bold mb-4 leading-none" style={{ color: "var(--border)" }}>
+                  <div className="text-3xl font-bold mb-4 leading-none" style={{ color: "rgba(255,255,255,0.18)" }}>
                     {step.n}
                   </div>
                   <h3 className="text-sm font-semibold mb-2">{step.title}</h3>
@@ -607,8 +607,8 @@ export default function Home() {
                     <span
                       className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center"
                       style={{
-                        background: openFaq === i ? GREEN : "var(--border)",
-                        color: openFaq === i ? "#080909" : "var(--muted)",
+                        background: openFaq === i ? GREEN : "rgba(255,255,255,0.1)",
+                        color: openFaq === i ? "#080909" : "var(--foreground)",
                         transform: openFaq === i ? "rotate(45deg)" : "rotate(0deg)",
                         transition: "all 0.2s ease",
                       }}
