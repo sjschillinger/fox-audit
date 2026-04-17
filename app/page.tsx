@@ -245,67 +245,64 @@ export default function Home() {
         }}
       />
 
-      {/* Nav */}
-      <header
-        className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
-        style={{
-          background: scrolled ? "rgba(8,9,9,0.85)" : "transparent",
-          backdropFilter: scrolled ? "blur(16px)" : "none",
-          borderBottom: scrolled ? "1px solid var(--border)" : "1px solid transparent",
-        }}
+      {/* Floating apply CTA — appears on scroll */}
+      <div
+        className="fixed top-4 right-5 sm:right-8 z-50 transition-all duration-300"
+        style={{ opacity: scrolled ? 1 : 0, pointerEvents: scrolled ? "auto" : "none" }}
       >
-        <nav className="max-w-5xl mx-auto px-5 sm:px-8 h-14 flex items-center justify-between">
-          <span className="text-sm font-semibold tracking-tight">Fox Audit</span>
-          <a
-            href={APPLY_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-xs font-semibold px-4 py-2 rounded-full transition-all duration-200 hover:opacity-90 active:scale-95"
-            style={{ background: GREEN, color: "#080909" }}
-          >
-            Apply Now
-          </a>
-        </nav>
-      </header>
+        <a
+          href={APPLY_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-xs font-semibold px-4 py-2 rounded-full transition-all duration-200 hover:opacity-90 active:scale-95 block"
+          style={{ background: GREEN, color: "#080909", backdropFilter: "blur(12px)" }}
+        >
+          Apply Now
+        </a>
+      </div>
 
       {/* Hero */}
-      <section className="relative pt-28 pb-16 px-5 sm:px-8 overflow-hidden">
+      <section className="relative pt-20 pb-16 px-5 sm:px-8 overflow-hidden">
         <div
-          className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[500px] pointer-events-none"
-          style={{ background: `radial-gradient(ellipse at 50% 0%, ${GREEN_15} 0%, transparent 70%)` }}
+          className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] pointer-events-none"
+          style={{ background: `radial-gradient(ellipse at 50% 0%, ${GREEN_15} 0%, transparent 68%)` }}
         />
 
         <div className="relative max-w-3xl mx-auto text-center">
+          {/* Urgency badge */}
           <div
-            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-8"
+            className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full text-xs mb-10"
             style={{
-              background: GREEN_10,
-              border: `1px solid ${GREEN_25}`,
-              color: GREEN,
+              background: "var(--surface)",
+              border: "1px solid var(--border)",
+              color: "var(--muted)",
               animation: "fadeIn 0.6s ease forwards",
             }}
           >
-            <span className="w-1.5 h-1.5 rounded-full" style={{ background: GREEN }} />
-            Flat fee · One-time · No ongoing relationship
+            <span
+              className="w-2 h-2 rounded-full flex-shrink-0"
+              style={{
+                background: "#ef4444",
+                boxShadow: "0 0 6px rgba(239,68,68,0.7)",
+                animation: "pulse 2s ease-in-out infinite",
+              }}
+            />
+            Limited spots — only a few openings left this month
           </div>
 
+          {/* Brand wordmark */}
           <h1
-            className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight leading-[1.1] mb-6"
-            style={{ animation: "fadeUp 0.7s ease 0.1s forwards", opacity: 0 }}
+            className="font-bold uppercase mb-6"
+            style={{
+              fontSize: "clamp(2.5rem, 10vw, 5.5rem)",
+              letterSpacing: "0.12em",
+              color: GREEN,
+              animation: "fadeUp 0.7s ease 0.1s forwards",
+              opacity: 0,
+              lineHeight: 1.05,
+            }}
           >
-            Your finances,
-            <br />
-            <span
-              style={{
-                background: `linear-gradient(135deg, var(--foreground) 0%, ${GREEN} 60%, var(--foreground) 100%)`,
-                backgroundSize: "200% auto",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
-              finally understood.
-            </span>
+            The Fox Audit
           </h1>
 
           <p
