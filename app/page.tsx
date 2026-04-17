@@ -5,7 +5,15 @@ import { useState, useEffect, useRef } from "react";
 const APPLY_URL =
   "https://docs.google.com/forms/d/e/1FAIpQLSdExample/viewform";
 
-function useInView(threshold = 0.15) {
+const GREEN = "#22c55e";
+const GREEN_DIM = "#16a34a";
+const GREEN_10 = "rgba(34,197,94,0.1)";
+const GREEN_15 = "rgba(34,197,94,0.15)";
+const GREEN_25 = "rgba(34,197,94,0.25)";
+const GREEN_30 = "rgba(34,197,94,0.3)";
+const GREEN_35 = "rgba(34,197,94,0.35)";
+
+function useInView(threshold = 0.1) {
   const ref = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
 
@@ -49,6 +57,51 @@ function AnimatedSection({
       }}
     >
       {children}
+    </div>
+  );
+}
+
+function YoutubeEmbed({ id, title }: { id: string; title: string }) {
+  return (
+    <div style={{ position: "relative", width: "100%", paddingBottom: "56.25%", background: "var(--surface)" }}>
+      <iframe
+        src={`https://www.youtube.com/embed/${id}`}
+        title={title}
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          border: "none",
+        }}
+      />
+    </div>
+  );
+}
+
+function YoutubePortrait({ id, title, author }: { id: string; title: string; author?: string }) {
+  return (
+    <div
+      className="rounded-2xl overflow-hidden"
+      style={{ background: "var(--surface)", border: "1px solid var(--border)" }}
+    >
+      <div style={{ position: "relative", width: "100%", paddingBottom: "177.77%", background: "var(--surface)" }}>
+        <iframe
+          src={`https://www.youtube.com/embed/${id}`}
+          title={title}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none" }}
+        />
+      </div>
+      {author && (
+        <div className="px-4 py-3" style={{ borderTop: "1px solid var(--border)" }}>
+          <p className="text-sm font-medium" style={{ color: "var(--foreground)" }}>{author}</p>
+        </div>
+      )}
     </div>
   );
 }
@@ -135,31 +188,11 @@ const STEPS = [
 ];
 
 const COMPARE = [
-  {
-    label: "Cost structure",
-    traditional: "% of assets annually (1–2%+)",
-    fox: "Flat one-time fee",
-  },
-  {
-    label: "Incentive",
-    traditional: "Sell products, grow AUM",
-    fox: "Give you a clear plan",
-  },
-  {
-    label: "Outcome",
-    traditional: "Ongoing dependency",
-    fox: "Full independence",
-  },
-  {
-    label: "Language",
-    traditional: "Often deliberately confusing",
-    fox: "Plain English, always",
-  },
-  {
-    label: "Commissions",
-    traditional: "Yes — tied to products sold",
-    fox: "None. Ever.",
-  },
+  { label: "Cost structure", traditional: "% of assets annually (1–2%+)", fox: "Flat one-time fee" },
+  { label: "Incentive", traditional: "Sell products, grow AUM", fox: "Give you a clear plan" },
+  { label: "Outcome", traditional: "Ongoing dependency", fox: "Full independence" },
+  { label: "Language", traditional: "Often deliberately confusing", fox: "Plain English, always" },
+  { label: "Commissions", traditional: "Yes — tied to products sold", fox: "None. Ever." },
 ];
 
 const FAQS = [
@@ -228,7 +261,7 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
             className="text-xs font-semibold px-4 py-2 rounded-full transition-all duration-200 hover:opacity-90 active:scale-95"
-            style={{ background: "var(--accent)", color: "#080909" }}
+            style={{ background: GREEN, color: "#080909" }}
           >
             Apply Now
           </a>
@@ -236,25 +269,23 @@ export default function Home() {
       </header>
 
       {/* Hero */}
-      <section className="relative pt-28 pb-20 px-5 sm:px-8 overflow-hidden">
+      <section className="relative pt-28 pb-16 px-5 sm:px-8 overflow-hidden">
         <div
           className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[500px] pointer-events-none"
-          style={{
-            background: "radial-gradient(ellipse at 50% 0%, rgba(212,164,76,0.13) 0%, transparent 70%)",
-          }}
+          style={{ background: `radial-gradient(ellipse at 50% 0%, ${GREEN_15} 0%, transparent 70%)` }}
         />
 
         <div className="relative max-w-3xl mx-auto text-center">
           <div
             className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-8"
             style={{
-              background: "rgba(212,164,76,0.1)",
-              border: "1px solid rgba(212,164,76,0.25)",
-              color: "var(--accent)",
+              background: GREEN_10,
+              border: `1px solid ${GREEN_25}`,
+              color: GREEN,
               animation: "fadeIn 0.6s ease forwards",
             }}
           >
-            <span className="w-1.5 h-1.5 rounded-full" style={{ background: "var(--accent)" }} />
+            <span className="w-1.5 h-1.5 rounded-full" style={{ background: GREEN }} />
             Flat fee · One-time · No ongoing relationship
           </div>
 
@@ -264,7 +295,17 @@ export default function Home() {
           >
             Your finances,
             <br />
-            <span className="gradient-text">finally understood.</span>
+            <span
+              style={{
+                background: `linear-gradient(135deg, var(--foreground) 0%, ${GREEN} 60%, var(--foreground) 100%)`,
+                backgroundSize: "200% auto",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
+              finally understood.
+            </span>
           </h1>
 
           <p
@@ -284,7 +325,7 @@ export default function Home() {
               target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto px-7 py-3.5 rounded-full text-sm font-semibold transition-all duration-200 hover:opacity-90 active:scale-95 text-center"
-              style={{ background: "var(--accent)", color: "#080909" }}
+              style={{ background: GREEN, color: "#080909" }}
             >
               Apply in 3 minutes
             </a>
@@ -292,7 +333,7 @@ export default function Home() {
               href="#how-it-works"
               className="w-full sm:w-auto px-7 py-3.5 rounded-full text-sm font-medium transition-all duration-200 text-center"
               style={{ border: "1px solid var(--border)", color: "var(--foreground)" }}
-              onMouseEnter={(e) => (e.currentTarget.style.borderColor = "rgba(212,164,76,0.4)")}
+              onMouseEnter={(e) => (e.currentTarget.style.borderColor = GREEN_30)}
               onMouseLeave={(e) => (e.currentTarget.style.borderColor = "var(--border)")}
             >
               See how it works
@@ -302,17 +343,14 @@ export default function Home() {
 
         {/* Stats bar */}
         <div
-          className="relative max-w-2xl mx-auto mt-16"
+          className="relative max-w-2xl mx-auto mt-12"
           style={{ animation: "fadeUp 0.7s ease 0.45s forwards", opacity: 0 }}
         >
           <div
             className="rounded-2xl p-px"
             style={{ background: "linear-gradient(135deg, var(--border), transparent, var(--border))" }}
           >
-            <div
-              className="rounded-2xl px-4 py-5 grid grid-cols-3"
-              style={{ background: "var(--surface)" }}
-            >
+            <div className="rounded-2xl px-4 py-5 grid grid-cols-3" style={{ background: "var(--surface)" }}>
               {[
                 { value: "2 hrs", label: "Total session" },
                 { value: "1×", label: "One-time fee" },
@@ -321,11 +359,9 @@ export default function Home() {
                 <div
                   key={i}
                   className="px-2 sm:px-6 text-center"
-                  style={{
-                    borderRight: i < 2 ? "1px solid var(--border)" : "none",
-                  }}
+                  style={{ borderRight: i < 2 ? "1px solid var(--border)" : "none" }}
                 >
-                  <div className="text-xl sm:text-2xl font-semibold mb-0.5" style={{ color: "var(--accent)" }}>
+                  <div className="text-xl sm:text-2xl font-semibold mb-0.5" style={{ color: GREEN }}>
                     {s.value}
                   </div>
                   <div className="text-xs" style={{ color: "var(--muted)" }}>{s.label}</div>
@@ -336,11 +372,25 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Hero video */}
+      <section className="py-4 px-5 sm:px-8">
+        <div className="max-w-3xl mx-auto">
+          <AnimatedSection>
+            <div
+              className="rounded-2xl overflow-hidden"
+              style={{ border: "1px solid var(--border)" }}
+            >
+              <YoutubeEmbed id="tKIDTpPuBMc" title="Fox Audit — Overview" />
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
       {/* What's included */}
       <section className="py-20 px-5 sm:px-8">
         <div className="max-w-5xl mx-auto">
           <AnimatedSection className="mb-12 text-center">
-            <p className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: "var(--accent)" }}>
+            <p className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: GREEN }}>
               What&apos;s included
             </p>
             <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight">
@@ -357,12 +407,12 @@ export default function Home() {
                 <div
                   className="h-full p-5 rounded-2xl transition-colors duration-200"
                   style={{ background: "var(--surface)", border: "1px solid var(--border)" }}
-                  onMouseEnter={(e) => (e.currentTarget.style.borderColor = "rgba(212,164,76,0.3)")}
+                  onMouseEnter={(e) => (e.currentTarget.style.borderColor = GREEN_30)}
                   onMouseLeave={(e) => (e.currentTarget.style.borderColor = "var(--border)")}
                 >
                   <div
                     className="w-9 h-9 rounded-xl flex items-center justify-center mb-4"
-                    style={{ background: "rgba(212,164,76,0.1)", color: "var(--accent)" }}
+                    style={{ background: GREEN_10, color: GREEN }}
                   >
                     {item.icon}
                   </div>
@@ -379,7 +429,7 @@ export default function Home() {
       <section id="how-it-works" className="py-20 px-5 sm:px-8">
         <div className="max-w-5xl mx-auto">
           <AnimatedSection className="mb-12 text-center">
-            <p className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: "var(--accent)" }}>
+            <p className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: GREEN }}>
               The process
             </p>
             <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight">
@@ -410,7 +460,7 @@ export default function Home() {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block px-7 py-3.5 rounded-full text-sm font-semibold transition-all duration-200 hover:opacity-90 active:scale-95"
-              style={{ background: "var(--accent)", color: "#080909" }}
+              style={{ background: GREEN, color: "#080909" }}
             >
               Start with the application
             </a>
@@ -422,7 +472,7 @@ export default function Home() {
       <section className="py-20 px-5 sm:px-8">
         <div className="max-w-3xl mx-auto">
           <AnimatedSection className="mb-12 text-center">
-            <p className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: "var(--accent)" }}>
+            <p className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: GREEN }}>
               The difference
             </p>
             <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight">
@@ -441,7 +491,7 @@ export default function Home() {
               >
                 <span></span>
                 <span className="text-center">Traditional</span>
-                <span className="text-center" style={{ color: "var(--accent)" }}>Fox Audit</span>
+                <span className="text-center" style={{ color: GREEN }}>Fox Audit</span>
               </div>
               {COMPARE.map((row, i) => (
                 <div
@@ -462,6 +512,42 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Testimonials */}
+      <section className="py-20 px-5 sm:px-8">
+        <div className="max-w-5xl mx-auto">
+          <AnimatedSection className="mb-12 text-center">
+            <p className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: GREEN }}>
+              Real clients
+            </p>
+            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight">
+              Don&apos;t take my word for it.
+            </h2>
+          </AnimatedSection>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
+            <AnimatedSection delay={0.05}>
+              <YoutubePortrait id="mtsu-6hfwDc" title="Client testimonial 1" />
+            </AnimatedSection>
+            <AnimatedSection delay={0.15}>
+              <YoutubePortrait id="eb2P3yyVRog" title="Client testimonial 2" />
+            </AnimatedSection>
+          </div>
+
+          {/* Judson text testimonial */}
+          <AnimatedSection className="mt-4 max-w-2xl mx-auto" delay={0.25}>
+            <div
+              className="rounded-2xl p-6"
+              style={{ background: "var(--surface)", border: "1px solid var(--border)" }}
+            >
+              <p className="text-sm leading-relaxed mb-4" style={{ color: "var(--muted)" }}>
+                &ldquo;I genuinely didn&apos;t know where to start with any of this. Andrew looked at everything — my 401k, my debt, my spending — and just laid it out clearly. I walked away with an actual plan for the first time.&rdquo;
+              </p>
+              <p className="text-sm font-semibold" style={{ color: "var(--foreground)" }}>— Judson</p>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
       {/* Quote */}
       <section className="py-10 px-5 sm:px-8">
         <div className="max-w-2xl mx-auto">
@@ -472,7 +558,7 @@ export default function Home() {
             >
               <div
                 className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 text-5xl leading-none select-none"
-                style={{ color: "var(--accent)", fontFamily: "Georgia, serif" }}
+                style={{ color: GREEN, fontFamily: "Georgia, serif" }}
               >
                 &ldquo;
               </div>
@@ -482,7 +568,7 @@ export default function Home() {
               <div className="mt-6 flex items-center justify-center gap-3">
                 <div
                   className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0"
-                  style={{ background: "var(--accent)", color: "#080909" }}
+                  style={{ background: GREEN, color: "#080909" }}
                 >
                   AF
                 </div>
@@ -497,11 +583,11 @@ export default function Home() {
       <section className="py-20 px-5 sm:px-8">
         <div className="max-w-2xl mx-auto">
           <AnimatedSection className="mb-12 text-center">
-            <p className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: "var(--accent)" }}>
+            <p className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: GREEN }}>
               FAQ
             </p>
             <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight">
-              Common questions.
+              Before you ask.
             </h2>
           </AnimatedSection>
 
@@ -512,7 +598,7 @@ export default function Home() {
                   className="rounded-xl overflow-hidden"
                   style={{
                     background: "var(--surface)",
-                    border: openFaq === i ? "1px solid rgba(212,164,76,0.35)" : "1px solid var(--border)",
+                    border: openFaq === i ? `1px solid ${GREEN_35}` : "1px solid var(--border)",
                     transition: "border-color 0.2s ease",
                   }}
                 >
@@ -524,7 +610,7 @@ export default function Home() {
                     <span
                       className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center"
                       style={{
-                        background: openFaq === i ? "var(--accent)" : "var(--border)",
+                        background: openFaq === i ? GREEN : "var(--border)",
                         color: openFaq === i ? "#080909" : "var(--muted)",
                         transform: openFaq === i ? "rotate(45deg)" : "rotate(0deg)",
                         transition: "all 0.2s ease",
@@ -535,16 +621,8 @@ export default function Home() {
                       </svg>
                     </span>
                   </button>
-                  <div
-                    style={{
-                      maxHeight: openFaq === i ? "300px" : "0",
-                      overflow: "hidden",
-                      transition: "max-height 0.3s ease",
-                    }}
-                  >
-                    <p className="px-5 pb-4 text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
-                      {faq.a}
-                    </p>
+                  <div style={{ maxHeight: openFaq === i ? "300px" : "0", overflow: "hidden", transition: "max-height 0.3s ease" }}>
+                    <p className="px-5 pb-4 text-sm leading-relaxed" style={{ color: "var(--muted)" }}>{faq.a}</p>
                   </div>
                 </div>
               </AnimatedSection>
@@ -563,13 +641,11 @@ export default function Home() {
             >
               <div
                 className="absolute inset-0 pointer-events-none"
-                style={{
-                  background: "radial-gradient(ellipse 70% 50% at 50% 100%, rgba(212,164,76,0.1) 0%, transparent 70%)",
-                }}
+                style={{ background: `radial-gradient(ellipse 70% 50% at 50% 100%, ${GREEN_10} 0%, transparent 70%)` }}
               />
               <div className="relative">
                 <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight mb-4">
-                  Ready to get clarity?
+                  Stop wondering. Start building.
                 </h2>
                 <p className="text-base mb-8 max-w-sm mx-auto" style={{ color: "var(--muted)" }}>
                   The application takes 3 minutes. The session takes 2 hours. The plan lasts all year.
@@ -579,7 +655,7 @@ export default function Home() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-block px-8 py-4 rounded-full text-sm font-semibold transition-all duration-200 hover:opacity-90 active:scale-95"
-                  style={{ background: "var(--accent)", color: "#080909" }}
+                  style={{ background: GREEN, color: "#080909" }}
                 >
                   Apply Now — Free to Apply
                 </a>
@@ -596,7 +672,7 @@ export default function Home() {
                       rel="noopener noreferrer"
                       className="text-xs transition-colors duration-150"
                       style={{ color: "var(--muted)" }}
-                      onMouseEnter={(e) => (e.currentTarget.style.color = "var(--accent)")}
+                      onMouseEnter={(e) => (e.currentTarget.style.color = GREEN)}
                       onMouseLeave={(e) => (e.currentTarget.style.color = "var(--muted)")}
                     >
                       {s.label}
@@ -635,7 +711,6 @@ export default function Home() {
               ))}
             </div>
           </div>
-
           <div className="text-xs leading-relaxed" style={{ color: "var(--muted)" }}>
             <p className="font-medium mb-2">Disclaimer</p>
             <p>
