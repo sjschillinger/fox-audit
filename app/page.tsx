@@ -262,16 +262,24 @@ export default function Home() {
       </div>
 
       {/* Hero */}
-      <section className="relative pt-20 pb-16 px-5 sm:px-8 overflow-hidden">
+      <section className="relative pt-12 sm:pt-20 pb-10 sm:pb-16 px-5 sm:px-8 overflow-hidden">
         <div
           className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] pointer-events-none"
           style={{ background: `radial-gradient(ellipse at 50% 0%, ${GREEN_15} 0%, transparent 68%)` }}
         />
 
         <div className="relative max-w-3xl mx-auto text-center">
+          {/* Wordmark */}
+          <p
+            className="text-xs font-bold uppercase tracking-[0.25em] mb-5"
+            style={{ color: GREEN, animation: "fadeIn 0.5s ease forwards", opacity: 0 }}
+          >
+            The Fox Audit
+          </p>
+
           {/* Urgency badge */}
           <div
-            className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full text-xs mb-10"
+            className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full text-xs mb-6"
             style={{
               background: "var(--surface)",
               border: "1px solid var(--border)",
@@ -310,7 +318,7 @@ export default function Home() {
           </h1>
 
           <p
-            className="text-base sm:text-lg max-w-xl mx-auto leading-relaxed mb-10"
+            className="text-base sm:text-lg max-w-xl mx-auto leading-relaxed mb-7"
             style={{ color: "var(--muted)", animation: "fadeUp 0.7s ease 0.2s forwards", opacity: 0 }}
           >
             A 2-hour deep dive into everything you own, owe, earn, and spend —
@@ -344,7 +352,7 @@ export default function Home() {
 
         {/* Stats bar */}
         <div
-          className="relative max-w-2xl mx-auto mt-12"
+          className="relative max-w-2xl mx-auto mt-8"
           style={{ animation: "fadeUp 0.7s ease 0.45s forwards", opacity: 0 }}
         >
           <div
@@ -374,7 +382,7 @@ export default function Home() {
       </section>
 
       {/* Hero video */}
-      <section className="py-4 px-5 sm:px-8">
+      <section className="pt-6 pb-2 px-5 sm:px-8">
         <div className="max-w-3xl mx-auto">
           <AnimatedSection>
             <div
@@ -388,31 +396,31 @@ export default function Home() {
       </section>
 
       {/* What's included */}
-      <section className="py-20 px-5 sm:px-8">
+      <section className="py-12 sm:py-20 px-5 sm:px-8">
         <div className="max-w-5xl mx-auto">
-          <AnimatedSection className="mb-12 text-center">
-            <p className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: GREEN }}>
+          <AnimatedSection className="mb-7 sm:mb-12 text-center">
+            <p className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: GREEN }}>
               What&apos;s included
             </p>
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight">
+            <h2 className="text-2xl sm:text-4xl font-semibold tracking-tight">
               Everything, in one session.
             </h2>
-            <p className="mt-4 text-base max-w-md mx-auto" style={{ color: "var(--muted)" }}>
+            <p className="mt-3 text-sm sm:text-base max-w-md mx-auto" style={{ color: "var(--muted)" }}>
               No follow-up packages. No upsells. Every item below is covered in a single flat fee.
             </p>
           </AnimatedSection>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3">
             {INCLUDED.map((item, i) => (
               <AnimatedSection key={i} delay={i * 0.07}>
                 <div
-                  className="h-full p-5 rounded-2xl transition-colors duration-200"
+                  className="h-full p-4 sm:p-5 rounded-2xl transition-colors duration-200"
                   style={{ background: "var(--surface)", border: "1px solid var(--border)" }}
                   onMouseEnter={(e) => (e.currentTarget.style.borderColor = GREEN_30)}
                   onMouseLeave={(e) => (e.currentTarget.style.borderColor = "var(--border)")}
                 >
                   <div
-                    className="w-9 h-9 rounded-xl flex items-center justify-center mb-4"
+                    className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl flex items-center justify-center mb-3"
                     style={{ background: GREEN_10, color: GREEN }}
                   >
                     {item.icon}
@@ -427,22 +435,22 @@ export default function Home() {
       </section>
 
       {/* How it works */}
-      <section id="how-it-works" className="py-20 px-5 sm:px-8">
+      <section id="how-it-works" className="py-12 sm:py-20 px-5 sm:px-8">
         <div className="max-w-5xl mx-auto">
-          <AnimatedSection className="mb-12 text-center">
-            <p className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: GREEN }}>
+          <AnimatedSection className="mb-7 sm:mb-12 text-center">
+            <p className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: GREEN }}>
               The process
             </p>
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight">
+            <h2 className="text-2xl sm:text-4xl font-semibold tracking-tight">
               Simple from start to plan.
             </h2>
           </AnimatedSection>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3">
             {STEPS.map((step, i) => (
               <AnimatedSection key={i} delay={i * 0.1}>
                 <div
-                  className="p-5 rounded-2xl h-full"
+                  className="p-4 sm:p-5 rounded-2xl h-full"
                   style={{ background: "var(--surface)", border: "1px solid var(--border)" }}
                 >
                   <div className="text-3xl font-bold mb-4 leading-none" style={{ color: "rgba(255,255,255,0.18)" }}>
@@ -455,7 +463,7 @@ export default function Home() {
             ))}
           </div>
 
-          <AnimatedSection className="mt-8 text-center" delay={0.4}>
+          <AnimatedSection className="mt-6 text-center" delay={0.4}>
             <a
               href={APPLY_URL}
               target="_blank"
@@ -470,16 +478,16 @@ export default function Home() {
       </section>
 
       {/* Comparison */}
-      <section className="py-20 px-5 sm:px-8">
+      <section className="py-12 sm:py-20 px-5 sm:px-8">
         <div className="max-w-3xl mx-auto">
-          <AnimatedSection className="mb-12 text-center">
-            <p className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: GREEN }}>
+          <AnimatedSection className="mb-7 sm:mb-12 text-center">
+            <p className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: GREEN }}>
               The difference
             </p>
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight">
+            <h2 className="text-2xl sm:text-4xl font-semibold tracking-tight">
               Not what you&apos;ve seen before.
             </h2>
-            <p className="mt-4 text-base max-w-md mx-auto" style={{ color: "var(--muted)" }}>
+            <p className="mt-3 text-sm sm:text-base max-w-md mx-auto" style={{ color: "var(--muted)" }}>
               Traditional advisors have financial incentives that don&apos;t align with yours. This does.
             </p>
           </AnimatedSection>
@@ -514,18 +522,18 @@ export default function Home() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-20 px-5 sm:px-8">
+      <section className="py-12 sm:py-20 px-5 sm:px-8">
         <div className="max-w-5xl mx-auto">
-          <AnimatedSection className="mb-12 text-center">
-            <p className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: GREEN }}>
+          <AnimatedSection className="mb-7 sm:mb-12 text-center">
+            <p className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: GREEN }}>
               Real clients
             </p>
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight">
+            <h2 className="text-2xl sm:text-4xl font-semibold tracking-tight">
               Don&apos;t take my word for it.
             </h2>
           </AnimatedSection>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
+          <div className="grid grid-cols-2 gap-3 max-w-2xl mx-auto">
             <AnimatedSection delay={0.05}>
               <YoutubePortrait id="mtsu-6hfwDc" title="Client testimonial 1" />
             </AnimatedSection>
@@ -535,9 +543,9 @@ export default function Home() {
           </div>
 
           {/* Judson text testimonial */}
-          <AnimatedSection className="mt-4 max-w-2xl mx-auto" delay={0.25}>
+          <AnimatedSection className="mt-3 max-w-2xl mx-auto" delay={0.25}>
             <div
-              className="rounded-2xl p-6"
+              className="rounded-2xl p-4 sm:p-6"
               style={{ background: "var(--surface)", border: "1px solid var(--border)" }}
             >
               <p className="text-sm leading-relaxed mb-4" style={{ color: "var(--muted)" }}>
@@ -550,11 +558,11 @@ export default function Home() {
       </section>
 
       {/* Quote */}
-      <section className="py-10 px-5 sm:px-8">
+      <section className="py-6 sm:py-10 px-5 sm:px-8">
         <div className="max-w-2xl mx-auto">
           <AnimatedSection>
             <div
-              className="relative rounded-2xl p-8 sm:p-10 text-center"
+              className="relative rounded-2xl p-6 sm:p-10 text-center"
               style={{ background: "var(--surface)", border: "1px solid var(--border)" }}
             >
               <div
@@ -581,13 +589,13 @@ export default function Home() {
       </section>
 
       {/* FAQ */}
-      <section className="py-20 px-5 sm:px-8">
+      <section className="py-12 sm:py-20 px-5 sm:px-8">
         <div className="max-w-2xl mx-auto">
-          <AnimatedSection className="mb-12 text-center">
-            <p className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: GREEN }}>
+          <AnimatedSection className="mb-7 sm:mb-12 text-center">
+            <p className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: GREEN }}>
               FAQ
             </p>
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight">
+            <h2 className="text-2xl sm:text-4xl font-semibold tracking-tight">
               Before you ask.
             </h2>
           </AnimatedSection>
@@ -633,11 +641,11 @@ export default function Home() {
       </section>
 
       {/* Final CTA */}
-      <section className="py-16 px-5 sm:px-8">
+      <section className="py-10 sm:py-16 px-5 sm:px-8">
         <div className="max-w-2xl mx-auto">
           <AnimatedSection>
             <div
-              className="relative rounded-3xl p-10 sm:p-14 text-center overflow-hidden"
+              className="relative rounded-3xl p-8 sm:p-14 text-center overflow-hidden"
               style={{ background: "var(--surface)", border: "1px solid var(--border)" }}
             >
               <div
@@ -645,10 +653,10 @@ export default function Home() {
                 style={{ background: `radial-gradient(ellipse 70% 50% at 50% 100%, ${GREEN_10} 0%, transparent 70%)` }}
               />
               <div className="relative">
-                <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight mb-4">
+                <h2 className="text-2xl sm:text-4xl font-semibold tracking-tight mb-3">
                   Stop wondering. Start building.
                 </h2>
-                <p className="text-base mb-8 max-w-sm mx-auto" style={{ color: "var(--muted)" }}>
+                <p className="text-sm sm:text-base mb-6 max-w-sm mx-auto" style={{ color: "var(--muted)" }}>
                   The application takes 3 minutes. The session takes 2 hours. The plan lasts all year.
                 </p>
                 <a
@@ -687,9 +695,9 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="py-10 px-5 sm:px-8 mt-auto" style={{ borderTop: "1px solid var(--border)" }}>
+      <footer className="py-8 px-5 sm:px-8 mt-auto" style={{ borderTop: "1px solid var(--border)" }}>
         <div className="max-w-5xl mx-auto">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-5">
             <span className="text-sm font-semibold">Fox Audit</span>
             <div className="flex items-center gap-5">
               {[
